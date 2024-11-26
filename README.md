@@ -1,4 +1,4 @@
-# bomb_squad__andys103_abidurr6_chongtainm_tawabb
+# bomb_squad__andys103_abidurr6_chongtianm_tawabb
 
 ## Project 2 by Bomb Squad
 
