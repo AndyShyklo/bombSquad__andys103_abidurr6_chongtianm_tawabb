@@ -5,9 +5,9 @@
 # Roster:
 **Project Manager**: Andy Shyklo
 
-**Frontend/API:** Abidur Rahman
+**Website Developer/Frontend Designed/API Integrater:** Abidur Rahman
 
-**Frontend/API:** Mark Ma
+**Website Developer/Frontend Designed/API Integrater:** Mark Ma
 
 **Backend/Database:** Tawab Berri
 
