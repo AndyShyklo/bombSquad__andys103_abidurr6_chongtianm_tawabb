@@ -3,7 +3,7 @@
 ## Project 2 by Bomb Squad
 
 # Roster:
-**Project Manager**: Andy  
+**Project Manager**: Andy Shyklo
 
 **Frontend/API:** Abidur Rahman
 
