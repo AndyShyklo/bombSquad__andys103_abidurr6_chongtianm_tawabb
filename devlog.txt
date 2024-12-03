@@ -1,2 +1,5 @@
 abidurR -- 2024-12-02 18:23
   * created devlog.txt
+
+abidurR -- 2024-12-02 21:28
+  * revised design doc: added visibility to component map and edited site map to accurately reflect our planning.
