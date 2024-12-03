@@ -13,3 +13,4 @@ abidurR -- 2024-12-02 21:51
 andyS -- 2024-12-03 0:52
   * revised design doc: added clearer SQL Database organizations; made more specific API usage, organized info
   * updated readme: added instructions for launching the app
+  * completed repo tree/structure
