@@ -1,1 +1,8 @@
+### [GeoDB API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_GeoDBCities.md)
+
+Used to obtain Topher Mykolyk's location on the map and other geographical features including proximity, coordinates, population, etc to develop the prediction algorithm.
+
+Example usages:
+
+- GET Request to cities near a city `https://wft-geo-db.p.rapidapi.com/v1/geo/cities/{cityId}/nearbyCities`, replace `cityID` with the ID found in `https://wft-geo-db.p.rapidapi.com/v1/geo/cities`.
 
