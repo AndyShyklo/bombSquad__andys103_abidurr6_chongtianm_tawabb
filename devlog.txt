@@ -6,3 +6,6 @@ abidurR -- 2024-12-02 21:28
 
 markM -- 2024-12-02 21:32
   * revised design doc: fixed issues regarding clarity in Program Components
+
+abidurR -- 2024-12-02 21:51
+  * updated readme: added roster and project description
