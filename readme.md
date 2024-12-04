@@ -39,7 +39,7 @@ git clone https://github.com/AndyShyklo/bombSquad__andys103_abidurr6_chongtianm_
 ### 2. Create a new virtual environment. You should run the app from in here: `python3 -m venv name_of_env` or `python -m venv name_of_env`
 
 ### 3. Activate the venv: `. path/to/name_of_env/bin/activate`
-#### 3.5. If you are on a windows device, you may have to try the command: `. path_to_env/Scripts/activate`
+#### 3.5. If you are on a windows device, you may have to try the command: `path_to_env/Scripts/activate`
 
 ### 4. Navigate into the project directory: `cd path/to/bombSquad__andys103_abidurr6_chongtianm_tawabb/`
 
