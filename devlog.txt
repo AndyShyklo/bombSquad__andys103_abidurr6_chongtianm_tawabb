@@ -14,3 +14,6 @@ andyS -- 2024-12-03 0:52
   * revised design doc: added clearer SQL Database organizations; made more specific API usage, organized info
   * updated readme: added instructions for launching the app
   * completed repo tree/structure
+
+markM -- 2024-12-03 11:00
+  * revised keys readme: added tentative run-down of situations for API keys and their uses
