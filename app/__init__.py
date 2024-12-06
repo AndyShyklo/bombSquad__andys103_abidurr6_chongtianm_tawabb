@@ -13,6 +13,8 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def landing_page():
     form_type = request.form.get('form_type')
+    if form_type == 'calendar':
+        return(redirect(url_for('calendar_page')))
     return render_template("index.html")
 
 @app.route("/calendar", methods=['GET', 'POST'])
@@ -31,4 +33,7 @@ def weather_page():
         return(redirect(url_for('calendar_page')))
     return render_template('weather.html')
 
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
     
