@@ -17,7 +17,8 @@ def map_page():
     geodb_key = open("keys/key_geodb.txt", "r").read().strip().rstrip()
     if len(geodb_key) == 0:
         return "YOU MUST ADD YOUR API KEY IN keys/key_geodb.txt !!!"
-    print(request.method)
+    
+    return render_template('index.html')
 
 @app.route('/sus', methods=['POST'])
 def sus():
