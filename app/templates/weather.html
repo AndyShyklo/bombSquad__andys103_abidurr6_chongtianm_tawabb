@@ -1,1 +1,55 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-blue-100 flex items-center justify-center h-screen m-0">
+    <div class="bg-white p-10 rounded-lg shadow-lg text-center w-4/5 max-w-2xl">
+        <h2 class="text-2xl font-bold mb-6">Weather</h2>
+        <div class="space-y-4">
+            <div class="flex justify-between items-center border-b pb-4">
+                <div>Monday</div>
+                <div class="text-xl font-semibold">59°F</div>
+                <div class="text-gray-600">Partly Cloudy</div>
+            </div>
+            <div class="flex justify-between items-center border-b pb-4">
+                <div>Tuesday</div>
+                <div class="text-xl font-semibold">62°F</div>
+                <div class="text-gray-600">Sunny</div>
+            </div>
+            <div class="flex justify-between items-center border-b pb-4">
+                <div>Wednesday</div>
+                <div class="text-xl font-semibold">60°F</div>
+                <div class="text-gray-600">Cloudy</div>
+            </div>
+            <div class="flex justify-between items-center border-b pb-4">
+                <div>Thursday</div>
+                <div class="text-xl font-semibold">57°F</div>
+                <div class="text-gray-600">Rainy</div>
+            </div>
+            <div class="flex justify-between items-center border-b pb-4">
+                <div>Friday</div>
+                <div class="text-xl font-semibold">55°F</div>
+                <div class="text-gray-600">Showers</div>
+            </div>
+            <div class="flex justify-between items-center border-b pb-4">
+                <div>Saturday</div>
+                <div class="text-xl font-semibold">59°F</div>
+                <div class="text-gray-600">Sunny</div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div>Sunday</div>
+                <div class="text-xl font-semibold">60°F</div>
+                <div class="text-gray-600">Partly Cloudy</div>
+            </div>
+        </div>
+    </div>
+    <br></br>
+    <form method="POST">
+        <input type="submit" name="form_type" value="calendar">
+    </form>
+</body>
+</html>

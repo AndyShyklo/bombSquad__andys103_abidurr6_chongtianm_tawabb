@@ -1,1 +1,78 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-blue-100 flex items-center justify-center h-screen m-0">
+    <table class="w-4/5 max-w-2xl bg-white shadow-lg">
+        <caption class="text-2xl font-bold py-4">Calendar</caption>
+        <thead>
+            <tr>
+                <th class="border p-2 bg-green-600 text-white">Sun</th>
+                <th class="border p-2 bg-green-600 text-white">Mon</th>
+                <th class="border p-2 bg-green-600 text-white">Tue</th>
+                <th class="border p-2 bg-green-600 text-white">Wed</th>
+                <th class="border p-2 bg-green-600 text-white">Thu</th>
+                <th class="border p-2 bg-green-600 text-white">Fri</th>
+                <th class="border p-2 bg-green-600 text-white">Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="border p-2"></td>
+                <td class="border p-2"></td>
+                <td class="border p-2">3</td>
+                <td class="border p-2">4</td>
+                <td class="border p-2">5</td>
+                <td class="border p-2">6</td>
+                <td class="border p-2">7</td>
+            </tr>
+            <tr>
+                <td class="border p-2">8</td>
+                <td class="border p-2">9</td>
+                <td class="border p-2">10</td>
+                <td class="border p-2">11</td>
+                <td class="border p-2">12</td>
+                <td class="border p-2">13</td>
+                <td class="border p-2">14</td>
+            </tr>
+            <tr>
+                <td class="border p-2">15</td>
+                <td class="border p-2">16</td>
+                <td class="border p-2">17</td>
+                <td class="border p-2">18</td>
+                <td class="border p-2">19</td>
+                <td class="border p-2">20</td>
+                <td class="border p-2">21</td>
+            </tr>
+            <tr>
+                <td class="border p-2">22</td>
+                <td class="border p-2">23</td>
+                <td class="border p-2">24</td>
+                <td class="border p-2 bg-yellow-400">25</td>
+                <td class="border p-2">26</td>
+                <td class="border p-2">27</td>
+                <td class="border p-2">28</td>
+            </tr>
+            <tr>
+                <td class="border p-2">29</td>
+                <td class="border p-2">30</td>
+                <td class="border p-2 bg-yellow-400">31</td>
+                <td class="border p-2"></td>
+                <td class="border p-2"></td>
+                <td class="border p-2"></td>
+                <td class="border p-2"></td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="POST">
+        <input type="submit" name="form_type" value="weather">
+    </form>
+    <form method="POST">
+        <input type="submit" name="form_type" value="home">
+    </form>
+</body>
+</html>
