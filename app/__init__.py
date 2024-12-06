@@ -27,3 +27,19 @@ def sus():
 if __name__ == "__main__":
     app.debug = True
     app.run()
+
+@app.route("/calendar", methods=['GET', 'POST'])
+def calendar_page():
+    form_type = request.form.get('form_type')
+    if form_type == 'weather':
+        return(redirect(url_for('weather_page')))
+    if form_type == 'home':
+        return(redirect(url_for('landing_page')))
+    return render_template('calendar.html')
+
+@app.route("/weather", methods=['GET', 'POST'])
+def weather_page():
+    form_type = request.form.get('form_type')
+    if form_type == 'calendar':
+        return(redirect(url_for('calendar_page')))
+    return render_template('weather.html')
