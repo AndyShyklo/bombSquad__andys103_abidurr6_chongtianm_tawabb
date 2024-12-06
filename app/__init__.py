@@ -31,4 +31,7 @@ def weather_page():
         return(redirect(url_for('calendar_page')))
     return render_template('weather.html')
 
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
     
