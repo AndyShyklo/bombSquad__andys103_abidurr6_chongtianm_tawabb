@@ -20,3 +20,6 @@ markM -- 2024-12-03 11:00
 
 andyS -- 2024-12-05 11:00
   * started db.py: started work on making the db for geodb api, and added personal API keys
+
+markM -- 2024-12-05 11:00
+  * Started on integrating map in home page.
