@@ -1,2 +1,2 @@
 env/
-app/keys/
+app/keys/*.txt
