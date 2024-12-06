@@ -17,7 +17,6 @@ def map_page():
     if len(geodb_key) == 0:
         return "YOU MUST ADD YOUR API KEY IN keys/key_geodb.txt !!!"
     print(request.method)
-    return render_template("index.html")
 
 @app.route('/sus', methods=['POST'])
 def sus():
@@ -43,3 +42,7 @@ def weather_page():
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
     return render_template('weather.html')
+  
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
