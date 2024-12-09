@@ -17,16 +17,12 @@ def createDB():
     c.execute(command)
 
 def access_calendar():
-    url = "https://calendarific.p.rapidapi.com/holidays"
+    cal_key = open("../keys/key_calendarific.txt", "r").read().strip().rstrip()
+    url = f"https://calendarific.p.rapidapi.com/holidays?={cal_key}"
 
-    querystring = {"year":"2025","country":"us"}
+    querystring = {"year":"2019","country":"US"}
 
-    headers = {
-    	"x-rapidapi-key": "e78b4c63b3msh000d6b6bc207071p147822jsna5971b2d94ee",
-    	"x-rapidapi-host": "calendarific.p.rapidapi.com"
-    }
-
-    response = requests.get(url, headers=headers, params=querystring)
+    response = requests.get(url, params=querystring)
 
     print(response.json())
 
