@@ -26,3 +26,7 @@ markM -- 2024-12-05 11:00
 
 andyS -- 2024-12-05 11:00
   * started access to calendarific api request
+
+markM - 2024-12-09 11:00
+  * Implemented method in index.html to display an image of topher's head on a specific coordinate on the map image.
+  * Integrated javascript function with jinja & passed in coordinates in __init__.py
