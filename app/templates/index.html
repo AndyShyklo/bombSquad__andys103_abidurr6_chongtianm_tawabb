@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<title> The Topher Tracker </title>
-		  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<style>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Home</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+		<style>
 body, html {
 	height: 1000px;
 	margin: 0;
@@ -26,25 +26,61 @@ body, html {
 }
 
 .overlays{
-    position:absolute;
+	position:absolute;
 }
-</style>
 
-<script>
-	
-</script>
+		</style>
+
+		<script>
+
+
+
+			function showImage() {
+
+							var image = new Image;
+							image.src = "https://i.pinimg.com/originals/c9/7f/94/c97f94a753e05580e298cec1d033ba40.jpg"
+
+							// margin = 20;
+
+							l = image.offsetLeft;
+							t = image.offsetTop;
+							w = image.width;
+							h = image.height;
+
+							offY = {{ longitude | tojson }}
+							offX = {{ latitude | tojson }} 
+							// offX = parseInt(Math.random() * w);
+							//offY = parseInt(Math.random() * h);
+
+							// if(offX > margin) offX -= margin;
+							// if(offY > margin) offY -= margin;
+
+							l += offX;
+							t += offY;
+
+							var newImage = document.createElement("img");
+							newImage.setAttribute('src', '../static/tophers_head.png');
+							newImage.setAttribute('class', 'overlays');
+							newImage.style.left = l + "px";
+							newImage.style.top = t + "px";
+							newImage.width = 50
+							newImage.height = 50
+							document.body.appendChild(newImage);
+						}
+
+
+		</script>
 
 	</head>
 
 	<body>
 		<div class="bg"></div>
-    <form method="POST">
-        <input type="submit" name="form_type" value="calendar">
-    </form>
 
-    <form method="POST">
-        <input type="submit" name="show topher" value="show_topher">
-    </form>
+		 <button onclick="showImage()">Show Topher</button>
+
+		<form method="POST">
+			<input type="submit" name="form_type" value="calendar">
+		</form>
 
 
 	</body>
