@@ -14,19 +14,21 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET', 'POST'])
 def map_page():
-    geodb_key = open("keys/key_geodb.txt", "r").read().strip().rstrip()
+
+    try:
+        geodb_key = open("keys/key_geodb.txt", "r").read().strip().rstrip()
+    except:
+        return "YOU MUST CREATE A keys/key_geodb.txt FILE AND STORE YOUR API KEY IN IT!!"
     if len(geodb_key) == 0:
         return "YOU MUST ADD YOUR API KEY IN keys/key_geodb.txt !!!"
     form_type = request.form.get('form_type')
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
 
-    return render_template('index.html')
+    longitude = 300
+    latitude = 300
 
-@app.route('/sus', methods=['POST'])
-def sus():
-    print(request.form.get('data'))
-    return redirect('/')
+    return render_template('index.html', longitude = longitude, latitude = latitude)
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():

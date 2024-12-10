@@ -6,7 +6,8 @@ P01: Topher Time
 Time Spent: 3 hours
 """
 
-import sqlite3, requests
+import sqlite3, urllib.request, json
+from flask import render_template, Flask, session, request, redirect
 
 DB_FILE="geo.db"
 
@@ -22,8 +23,9 @@ def access_calendar():
 
     querystring = {"year":"2019","country":"US"}
 
-    response = requests.get(url, params=querystring)
+    request_url = urllib.request.urlopen("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/{100}/distance")
 
-    print(response.json())
+
+    print(request_url)
 
 access_calendar()
