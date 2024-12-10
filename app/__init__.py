@@ -25,10 +25,10 @@ def map_page():
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
     
-    longitude = 300
-    latitude = 300
+    longitude = -98 #-180 # range [-180, 180]
+    latitude = 38.5 #-90 # range [-90, 90]
 
-    return render_template('index.html', longitude = longitude, latitude = latitude)
+    return render_template('index.html', longitude = (longitude + 180) / 360, latitude = (latitude + 90) / 180)
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():

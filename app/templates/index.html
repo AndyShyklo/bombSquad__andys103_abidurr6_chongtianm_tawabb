@@ -8,8 +8,9 @@
 		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 		<style>
 body, html {
-	height: 1000px;
-	margin: 0;
+max-width: 100%;
+    height: auto;
+    width: auto\9; 
 }
 
 .bg {
@@ -47,8 +48,8 @@ body, html {
 							w = image.width;
 							h = image.height;
 
-							offY = {{ longitude | tojson }}
-							offX = {{ latitude | tojson }} 
+							offY = {{ longitude | tojson }} * h
+							offX = {{ latitude | tojson }} * w
 							// offX = parseInt(Math.random() * w);
 							//offY = parseInt(Math.random() * h);
 
@@ -60,29 +61,31 @@ body, html {
 
 							var newImage = document.createElement("img");
 							newImage.setAttribute('src', '../static/tophers_head.png');
-							newImage.setAttribute('class', 'overlays');
-							newImage.style.left = l + "px";
-							newImage.style.top = t + "px";
-							newImage.width = 50
-							newImage.height = 50
-							document.body.appendChild(newImage);
-						}
+											newImage.setAttribute('class', 'overlays');
+											newImage.style.left = l + "px";
+											newImage.style.top = t + "px";
+											newImage.width = 50
+											newImage.height = 50
+											document.body.appendChild(newImage);
+										}
 
+			
 
 		</script>
 
 	</head>
 
 	<body>
+
+		First time? Resize your browser window until Topher is in the United States (or as close as possible)
+		
 		<div class="bg"></div>
 
-		 <button onclick="showImage()">Show Topher</button>
+		<button onclick="showImage()">Show Topher</button>
 
 		<form method="POST">
 			<input type="submit" name="form_type" value="calendar">
 		</form>
-
-
 	</body>
 
 </html>
