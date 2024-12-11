@@ -24,7 +24,7 @@ def map_page():
     form_type = request.form.get('form_type')
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
-
+    
     longitude = 300
     latitude = 300
 
