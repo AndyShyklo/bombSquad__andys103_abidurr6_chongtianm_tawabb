@@ -52,3 +52,6 @@ markM -- 2024-12-09 11:00
 
 tawabB -- 2024-12-10 10:45
   * Implemented method for accessing different information of countries stored in database
+
+tawabB -- 2024-12-11 10:55
+  * Fixed app path in __init__.py
