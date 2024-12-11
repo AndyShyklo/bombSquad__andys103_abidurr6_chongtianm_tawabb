@@ -15,16 +15,18 @@ DB_FILE="geo.db"
 def createDB():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "CREATE TABLE IF NOT EXISTS geodb (id INTEGER PRIMARY KEY AUTOINCREMENT, city TEXT, region TEXT, country TEXT, latitude FLOAT, longitude FLOAT, time_zone TEXT, min_pop INTEGER, holidays TEXT, year INTEGER, month INTEGER, day INTEGER, time TEXT, temp INTEGER, forecast TEXT)"
+    command = "CREATE TABLE IF NOT EXISTS geodb (id INTEGER PRIMARY KEY AUTOINCREMENT, geoid INTEGER, type TEXT, city TEXT, region TEXT, regionCode TEXT, country TEXT, countryCode TEXT, latitude FLOAT, longitude FLOAT, min_pop INTEGER)"
+    #command = "CREATE TABLE IF NOT EXISTS geodb (id INTEGER PRIMARY KEY AUTOINCREMENT, city TEXT, region TEXT, country TEXT, latitude FLOAT, longitude FLOAT, time_zone TEXT, min_pop INTEGER, holidays TEXT, year INTEGER, month INTEGER, day INTEGER, time TEXT, temp INTEGER, forecast TEXT)"
     c.execute(command)
+    db.commit()
 
 def access_geodb():
     api_key = open("../keys/key_geodb.txt", "r").read().strip()
 
-    url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
+    url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/"
     query_params = {
-        "countryIds": "US",
-        "minPopulation": 100000
+        "offset": 50,
+        "minPopulation": 1000000
     }
 
     urlb = f"{url}?{urlencode(query_params)}"
@@ -41,11 +43,20 @@ def access_geodb():
             data = json.load(response)
             print(json.dumps(data, indent=2))
     except urllib.error.HTTPError as e:
-        print(f"error: {e.code}, {e.reason}")
-        print(e.read().decode()) 
+        print(f"httperror")
+        print(e.read().decode())
     except urllib.error.URLError as e:
-        print(f"error: {e.reason}")
-        
+        print(f"urlerror")
+
+    # createDB()
+    # db = sqlite3.connect(DB_FILE)
+    # c = db.cursor()
+    # int i;
+    # try:
+    #
+    # c.execute(command)
+    # db.commit()
+
 def access_calendar():
     api_key = open("../keys/key_calendarific.txt", "r").read().strip()
 
@@ -70,7 +81,7 @@ def access_calendar():
             print(json.dumps(data, indent=2))
     except urllib.error.HTTPError as e:
         print(f"error: {e.code}, {e.reason}")
-        print(e.read().decode()) 
+        print(e.read().decode())
     except urllib.error.URLError as e:
         print(f"error: {e.reason}")
 
@@ -98,7 +109,7 @@ def access_nws():
             print(json.dumps(data, indent=2))
     except urllib.error.HTTPError as e:
         print(f"error: {e.code}, {e.reason}")
-        print(e.read().decode()) 
+        print(e.read().decode())
     except urllib.error.URLError as e:
         print(f"error: {e.reason}")
 

@@ -52,3 +52,7 @@ markM -- 2024-12-09 11:00
 
 tawabB -- 2024-12-10 10:45
   * Implemented method for accessing different information of countries stored in database
+
+andyS -- 2024-12-11 11:02
+  * geodb api: started accessing and uploading all cities greater than 1m to Database
+  * framework: laid out framework for other apis + methods for accessing
