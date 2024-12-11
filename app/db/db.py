@@ -8,6 +8,7 @@ Time Spent: 3 hours
 
 import sqlite3, urllib.request, json
 from flask import render_template, Flask, session, request, redirect
+from urllib.parse import urlencode
 
 DB_FILE="geo.db"
 
@@ -17,15 +18,88 @@ def createDB():
     command = "CREATE TABLE IF NOT EXISTS geodb (id INTEGER PRIMARY KEY AUTOINCREMENT, city TEXT, region TEXT, country TEXT, latitude FLOAT, longitude FLOAT, time_zone TEXT, min_pop INTEGER, holidays TEXT, year INTEGER, month INTEGER, day INTEGER, time TEXT, temp INTEGER, forecast TEXT)"
     c.execute(command)
 
+def access_geodb():
+    api_key = open("../keys/key_geodb.txt", "r").read().strip()
+
+    url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
+    query_params = {
+        "countryIds": "US",
+        "minPopulation": 100000
+    }
+
+    urlb = f"{url}?{urlencode(query_params)}"
+
+    headers = {
+        "X-RapidAPI-Key": api_key,
+        "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com"
+    }
+
+    request = urllib.request.Request(urlb, headers=headers)
+
+    try:
+        with urllib.request.urlopen(request) as response:
+            data = json.load(response)
+            print(json.dumps(data, indent=2))
+    except urllib.error.HTTPError as e:
+        print(f"error: {e.code}, {e.reason}")
+        print(e.read().decode()) 
+    except urllib.error.URLError as e:
+        print(f"error: {e.reason}")
+        
 def access_calendar():
-    cal_key = open("../keys/key_calendarific.txt", "r").read().strip().rstrip()
-    url = f"https://calendarific.p.rapidapi.com/holidays?={cal_key}"
+    api_key = open("../keys/key_calendarific.txt", "r").read().strip()
 
-    querystring = {"year":"2019","country":"US"}
+    url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
+    query_params = {
+        "countryIds": "US",
+        "minPopulation": 100000
+    }
 
-    request_url = urllib.request.urlopen("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/{100}/distance")
+    urlb = f"{url}?{urlencode(query_params)}"
 
+    headers = {
+        "X-RapidAPI-Key": api_key,
+        "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com"
+    }
 
-    print(request_url)
+    request = urllib.request.Request(urlb, headers=headers)
 
-access_calendar()
+    try:
+        with urllib.request.urlopen(request) as response:
+            data = json.load(response)
+            print(json.dumps(data, indent=2))
+    except urllib.error.HTTPError as e:
+        print(f"error: {e.code}, {e.reason}")
+        print(e.read().decode()) 
+    except urllib.error.URLError as e:
+        print(f"error: {e.reason}")
+
+def access_nws():
+    api_key = open("../keys/key_nws.txt", "r").read().strip()
+
+    url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
+    query_params = {
+        "countryIds": "US",
+        "minPopulation": 100000
+    }
+
+    urlb = f"{url}?{urlencode(query_params)}"
+
+    headers = {
+        "X-RapidAPI-Key": api_key,
+        "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com"
+    }
+
+    request = urllib.request.Request(urlb, headers=headers)
+
+    try:
+        with urllib.request.urlopen(request) as response:
+            data = json.load(response)
+            print(json.dumps(data, indent=2))
+    except urllib.error.HTTPError as e:
+        print(f"error: {e.code}, {e.reason}")
+        print(e.read().decode()) 
+    except urllib.error.URLError as e:
+        print(f"error: {e.reason}")
+
+access_geodb()
