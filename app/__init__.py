@@ -16,7 +16,8 @@ app = Flask(__name__)
 def map_page():
 
     try:
-        geodb_key = open("keys/key_geodb.txt", "r").read().strip().rstrip()
+        geodb_key = open("app/keys/key_geodb.txt", "r").read().strip().rstrip()
+        #print(geodb_key)
     except:
         return "YOU MUST CREATE A keys/key_geodb.txt FILE AND STORE YOUR API KEY IN IT!!"
     if len(geodb_key) == 0:

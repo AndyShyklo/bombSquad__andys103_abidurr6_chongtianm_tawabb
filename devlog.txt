@@ -1,3 +1,11 @@
+tawabB -- 2024-11-26 20:30
+  * added newflag.jpg
+
+tawabB -- 2024-11-27 10:30
+  * rename newflag.jpg to flag.jpg
+  * rename Bomb Squad Design Doc V0 .pdf to design.pdf
+  * conversed with topher about the importance of the names of files
+
 abidurR -- 2024-12-02 18:23
   * created devlog.txt
 
@@ -15,6 +23,13 @@ andyS -- 2024-12-03 0:52
   * updated readme: added instructions for launching the app
   * completed repo tree/structure
 
+tawabB -- 2024-12-03 10:40
+  * general cleanup:
+    - rename design0.pdf to designV0.pdf
+    - rename design1.pdf to design.pdf (in accordance with topher's naming conversation)
+    - fixed minor punctuation errors in readme.md
+    - differentiated readme.md and README.md
+
 markM -- 2024-12-03 11:00
   * revised keys readme: added tentative run-down of situations for API keys and their uses
 
@@ -23,3 +38,28 @@ andyS -- 2024-12-05 11:00
 
 markM -- 2024-12-05 11:00
   * Started on integrating map in home page.
+
+andyS -- 2024-12-05 11:00
+  * started access to calendarific api request
+
+tawabB -- 2024-12-06 10:45
+  * created branch DTB
+  * added tophers_head.png
+
+markM -- 2024-12-09 11:00
+  * Implemented method in index.html to display an image of topher's head on a specific coordinate on the map image.
+  * Integrated javascript function with jinja & passed in coordinates in __init__.py
+
+tawabB -- 2024-12-10 10:45
+  * Implemented method for accessing different information of countries stored in database
+
+abidurR --2024-12-11 10:46
+  * Adjusted screen resizing on index.html depending on device and window size
+  * Started working on past locations page and appropriate routing
+
+tawabB -- 2024-12-11 10:55
+  * Fixed app path in __init__.py
+
+andyS -- 2024-12-11 11:02
+  * geodb api: started accessing and uploading all cities greater than 1m to Database
+  * framework: laid out framework for other apis + methods for accessing
