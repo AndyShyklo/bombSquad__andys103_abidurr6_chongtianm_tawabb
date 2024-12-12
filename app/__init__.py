@@ -25,9 +25,10 @@ def map_page():
     form_type = request.form.get('form_type')
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
-    
-    longitude = -98/2 #-180 # range [-180, 180]
-    latitude = 38.5/2 #-90 # range [-90, 90]
+   
+
+    longitude = -94/2 -75 # range [-180, 180]
+    latitude = -35/2 -30 # range [-90, 90]
 
     return render_template('index.html', longitude = (longitude + 180) / 360, latitude = (latitude + 90) / 180)
 
