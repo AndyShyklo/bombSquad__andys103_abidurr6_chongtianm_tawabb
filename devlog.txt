@@ -54,8 +54,12 @@ tawabB -- 2024-12-10 10:45
   * Implemented method for accessing different information of countries stored in database
 
 abidurR --2024-12-11 10:46
- * Adjusted screen resizing on index.html depending on device and window size
- * Started working on past locations page and appropriate routing
+  * Adjusted screen resizing on index.html depending on device and window size
+  * Started working on past locations page and appropriate routing
 
- tawabB -- 2024-12-11 10:55
-   * Fixed app path in __init__.py
+tawabB -- 2024-12-11 10:55
+  * Fixed app path in __init__.py
+
+andyS -- 2024-12-11 11:02
+  * geodb api: started accessing and uploading all cities greater than 1m to Database
+  * framework: laid out framework for other apis + methods for accessing
