@@ -63,3 +63,6 @@ tawabB -- 2024-12-11 10:55
 andyS -- 2024-12-11 11:02
   * geodb api: started accessing and uploading all cities greater than 1m to Database
   * framework: laid out framework for other apis + methods for accessing
+
+tawabB -- 2024-12-12 11:01
+  * begun topher algorithm to determine next possible location
