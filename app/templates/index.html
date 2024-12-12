@@ -15,7 +15,7 @@ max-width: 100%;
 
 .bg {
 	/* The image used */
-	background-image: url("https://i.pinimg.com/originals/c9/7f/94/c97f94a753e05580e298cec1d033ba40.jpg");
+	background-image: url("static/world_map.jpg");
 
 	/* Full height */
 	height: 100%; 
@@ -39,8 +39,7 @@ max-width: 100%;
 			function showImage() {
 
 							var image = new Image;
-							image.src = "https://i.pinimg.com/originals/c9/7f/94/c97f94a753e05580e298cec1d033ba40.jpg"
-
+							image.src = "static/world_map.jpg";
 							// margin = 20;
 
 							l = image.offsetLeft;
@@ -48,8 +47,8 @@ max-width: 100%;
 							w = image.width;
 							h = image.height;
 
-							offY = {{ longitude | tojson }} * h
-							offX = {{ latitude | tojson }} * w
+							offY = {{ latitude | tojson }} * h
+							offX = {{ longitude | tojson }} * w
 							// offX = parseInt(Math.random() * w);
 							//offY = parseInt(Math.random() * h);
 

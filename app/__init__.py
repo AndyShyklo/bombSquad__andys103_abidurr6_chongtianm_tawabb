@@ -16,7 +16,7 @@ app = Flask(__name__)
 def map_page():
 
     try:
-        geodb_key = open("app/keys/key_geodb.txt", "r").read().strip().rstrip()
+        geodb_key = open("keys/key_geodb.txt", "r").read().strip().rstrip()
         #print(geodb_key)
     except:
         return "YOU MUST CREATE A keys/key_geodb.txt FILE AND STORE YOUR API KEY IN IT!!"
@@ -26,8 +26,8 @@ def map_page():
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
     
-    longitude = -98 #-180 # range [-180, 180]
-    latitude = 38.5 #-90 # range [-90, 90]
+    longitude = -98/2 #-180 # range [-180, 180]
+    latitude = 38.5/2 #-90 # range [-90, 90]
 
     return render_template('index.html', longitude = (longitude + 180) / 360, latitude = (latitude + 90) / 180)
 
