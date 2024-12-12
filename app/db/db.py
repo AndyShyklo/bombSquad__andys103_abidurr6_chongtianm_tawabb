@@ -38,10 +38,35 @@ def access_geodb():
 
     request = urllib.request.Request(urlb, headers=headers)
 
+    createDB()
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
     try:
         with urllib.request.urlopen(request) as response:
             data = json.load(response)
             print(json.dumps(data, indent=2))
+            for i in range (0, 2):
+                try:
+                    print("A")
+                    x1 = data["data"]
+                    print(type(x1))
+                    for item in x1:
+                        geoid = item["id"]
+                        type = item["type"]
+                        city = item["city"]
+                        region = item["region"]
+                        regionCode = item["regionCode"]
+                        country = item["country"]
+                        countryCode = item["countryCode"]
+                        latitude = item["latitude"]
+                        longitude = item["longitude"]
+                        min_pop = item["population"]
+                        command = f"INSERT INTO geodb (geoid, type, city, region, regionCode, country, countryCode, latitude, longitude, min_pop) VALUES ({geoid}, {type}, {city}, {region}, {regionCode}, {country}, {countryCode}, {latitude}, {longitude}, {min_pop})"
+                        c.execute(command)
+                        db.commit()
+                except Exception as e:
+                    print("error")
     except urllib.error.HTTPError as e:
         print(f"httperror")
         print(e.read().decode())
@@ -49,11 +74,8 @@ def access_geodb():
         print(f"urlerror")
 
     # createDB()
-    # db = sqlite3.connect(DB_FILE)
-    # c = db.cursor()
-    # int i;
-    # try:
-    #
+    # i = 0
+
     # c.execute(command)
     # db.commit()
 
