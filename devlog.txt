@@ -57,6 +57,10 @@ abidurR --2024-12-11 10:46
   * Adjusted screen resizing on index.html depending on device and window size
   * Started working on past locations page and appropriate routing
 
+markM -- 2024-12-12 11:00
+  * Bugfixed index.html and displaying of map
+  * Adjusted calculations for pinpointing on the map
+
 tawabB -- 2024-12-11 10:55
   * Fixed app path in __init__.py
 
