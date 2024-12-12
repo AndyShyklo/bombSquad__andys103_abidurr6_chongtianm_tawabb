@@ -57,13 +57,16 @@ abidurR --2024-12-11 10:46
   * Adjusted screen resizing on index.html depending on device and window size
   * Started working on past locations page and appropriate routing
 
-markM -- 2024-12-12 11:00
-  * Bugfixed index.html and displaying of map
-  * Adjusted calculations for pinpointing on the map
-
 tawabB -- 2024-12-11 10:55
   * Fixed app path in __init__.py
+
+markM -- 2024-12-11 11:00
+  * Continue bugfixing and calculating map offset.
 
 andyS -- 2024-12-11 11:02
   * geodb api: started accessing and uploading all cities greater than 1m to Database
   * framework: laid out framework for other apis + methods for accessing
+
+markM -- 2024-12-12 11:00
+  * Bugfixed index.html and displaying of map
+  * Adjusted calculations for pinpointing on the map
