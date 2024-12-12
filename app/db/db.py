@@ -6,7 +6,7 @@ P01: Topher Time
 Time Spent: 3 hours
 """
 
-import sqlite3, urllib.request, json
+import sqlite3, urllib.request, json, time
 from flask import render_template, Flask, session, request, redirect
 from urllib.parse import urlencode
 
@@ -20,12 +20,12 @@ def createDB():
     c.execute(command)
     db.commit()
 
-def access_geodb():
+def geodb(num):
     api_key = open("../keys/key_geodb.txt", "r").read().strip()
 
     url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/"
     query_params = {
-        "offset": 50,
+        "offset": num,
         "minPopulation": 1000000
     }
 
@@ -37,17 +37,22 @@ def access_geodb():
     }
 
     request = urllib.request.Request(urlb, headers=headers)
+    return(request)
 
+def access_geodb():
     createDB()
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
+    i = 0
+
     try:
-        with urllib.request.urlopen(request) as response:
-            data = json.load(response)
-            print(json.dumps(data, indent=2))
-            for i in range (0, 2):
-                # try:
+        while (True):
+            time.sleep(2)
+            with urllib.request.urlopen(geodb(i)) as response:
+                data = json.load(response)
+                print(json.dumps(data, indent=2))
+                for a in range (0, 1):
                     print("A")
                     x1 = data["data"]
                     print(type(x1))
@@ -58,21 +63,23 @@ def access_geodb():
                         city = item["city"]
                         print(city)
                         print(type(city))
-                        region = item["region"]
-                        print(region)
-                        print(type(region))
-                        regionCode = item["regionCode"]
+                        try:
+                            region = item["region"]
+                            print(region)
+                            print(type(region))
+                            regionCode = item["regionCode"]
+                        except Exception as b:
+                            print("b error")
                         country = item["country"]
                         countryCode = item["countryCode"]
                         latitude = item["latitude"]
                         longitude = item["longitude"]
                         min_pop = item["population"] #https://www.psycopg.org/docs/usage.html#passing-parameters-to-sql-queries
-                        command = f"INSERT INTO geodb (geoid, type, city, region, regionCode, country, countryCode, latitude, longitude, min_pop) VALUES ({geoid}, {type1}, {city}, {region}, {regionCode}, {country}, {countryCode}, {latitude}, {longitude}, {min_pop})"
+                        command = f"INSERT INTO geodb (geoid, type, city, region, regionCode, country, countryCode, latitude, longitude, min_pop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
                         print(command)
-                        c.execute(command)
+                        c.execute(command, (geoid, type1, city, region, regionCode, country, countryCode, latitude, longitude, min_pop))
                         db.commit()
-                # except Exception as e:
-                #     print("error")
+                    i += 5
     except urllib.error.HTTPError as e:
         print(f"httperror")
         print(e.read().decode())
@@ -80,6 +87,7 @@ def access_geodb():
         print(f"urlerror")
 
 
+    print("hi irvin")
     ret = c.execute("SELECT * FROM geodb")
     print(ret.fetchall())
     # createDB()
