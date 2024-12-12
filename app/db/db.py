@@ -47,32 +47,41 @@ def access_geodb():
             data = json.load(response)
             print(json.dumps(data, indent=2))
             for i in range (0, 2):
-                try:
+                # try:
                     print("A")
                     x1 = data["data"]
                     print(type(x1))
+                    print(x1)
                     for item in x1:
                         geoid = item["id"]
-                        type = item["type"]
+                        type1 = item["type"]
                         city = item["city"]
+                        print(city)
+                        print(type(city))
                         region = item["region"]
+                        print(region)
+                        print(type(region))
                         regionCode = item["regionCode"]
                         country = item["country"]
                         countryCode = item["countryCode"]
                         latitude = item["latitude"]
                         longitude = item["longitude"]
-                        min_pop = item["population"]
-                        command = f"INSERT INTO geodb (geoid, type, city, region, regionCode, country, countryCode, latitude, longitude, min_pop) VALUES ({geoid}, {type}, {city}, {region}, {regionCode}, {country}, {countryCode}, {latitude}, {longitude}, {min_pop})"
+                        min_pop = item["population"] #https://www.psycopg.org/docs/usage.html#passing-parameters-to-sql-queries
+                        command = f"INSERT INTO geodb (geoid, type, city, region, regionCode, country, countryCode, latitude, longitude, min_pop) VALUES ({geoid}, {type1}, {city}, {region}, {regionCode}, {country}, {countryCode}, {latitude}, {longitude}, {min_pop})"
+                        print(command)
                         c.execute(command)
                         db.commit()
-                except Exception as e:
-                    print("error")
+                # except Exception as e:
+                #     print("error")
     except urllib.error.HTTPError as e:
         print(f"httperror")
         print(e.read().decode())
     except urllib.error.URLError as e:
         print(f"urlerror")
 
+
+    ret = c.execute("SELECT * FROM geodb")
+    print(ret.fetchall())
     # createDB()
     # i = 0
 
