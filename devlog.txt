@@ -73,3 +73,7 @@ markM -- 2024-12-12 11:00
 
   tawabB -- 2024-12-12 11:01
     * begun topher algorithm to determine next possible location
+
+andyS -- 2024-12-11 17:49
+  * other apis: worked with nws and calendarific api, but faced bugs in both. calendarific is not authorizing, nws is only america
+  * geo db: added all cities over 1m population to geo.db
