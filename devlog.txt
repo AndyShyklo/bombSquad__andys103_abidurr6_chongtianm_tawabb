@@ -78,5 +78,5 @@ andyS -- 2024-12-11 17:49
   * other apis: worked with nws and calendarific api, but faced bugs in both. calendarific is not authorizing, nws is only america
   * geo db: added all cities over 1m population to geo.db
 
-markM -- 2024-12-12 11:00
+markM -- 2024-12-13 11:00
   * finished up index.html default homepage mapping
