@@ -109,16 +109,16 @@ def view_geodb():
     ret = c.execute("SELECT * FROM geodb")
     print(ret.fetchall())
 
-def access_calendar():
+def access_calendar(country, year, month, day):
     api_key = open("../keys/key_abstract.txt", "r").read().strip()
 
     url = "https://holidays.abstractapi.com/v1/"
 
     query_params = {
-        "country": "US",
-        "year": "2020",
-        "month": "12",
-        "day": "25"
+        "country": country,
+        "year": year,
+        "month": month,
+        "day": day
     }
 
     urlb = f"{url}?api_key={api_key}&{urlencode(query_params)}"
@@ -137,6 +137,7 @@ def access_calendar():
         print(f"error: {e.reason}")
 
 def access_nws():
+    #https://home.openweathermap.org/users/sign_up
     api_key = open("../keys/key_geodb.txt", "r").read().strip()
 
     url = "https://national-weather-service.p.rapidapi.com/points/{70.08},{70.08}"
@@ -158,4 +159,4 @@ def access_nws():
     except urllib.error.URLError as e:
         print(f"error: {e.reason}")
 
-access_calendar()
+access_calendar("US", "2024", "12", "13")
