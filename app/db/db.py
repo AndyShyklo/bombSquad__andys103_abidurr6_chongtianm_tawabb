@@ -110,49 +110,21 @@ def view_geodb():
     print(ret.fetchall())
 
 def access_calendar():
-    api_key = open("../keys/key_geodb.txt", "r").read().strip()
+    api_key = open("../keys/key_abstract.txt", "r").read().strip()
 
-    url = "https://calendarific.p.rapidapi.com/holidays"
+    url = "https://holidays.abstractapi.com/v1/"
 
-    #option 1
-    # request = Request(url)
-    # request.add_header("X-RapidAPI-Host", "calendarific.p.rapidapi.com")
-    # request.add_header("X-RapidAPI-Key", api_key)
-    # response = urllib.request.urlopen(request)
-    # text = response.read()
-    # print(json.loads(text))
-
-    #option 2
-    # headers = {
-    #     "x-rapidapi-key": api_key,
-    #     "x-rapidapi-host" :"calendarific.p.rapidapi.com"
-    # }
-
-    # query = {
-    #     "year": "2019",
-    #     "country": "US"
-    # }
-
-    # resp = urllib.request.Request("https://calendarific.p.rapidapi.com/holidays/" + urllib.parse.urlencode(query), headers=headers)
-
-    # re = urllib.request.urlopen(resp)
-    # results = json.load(resp)
-    # print(json.dumps(results))
-
-    #option 3
     query_params = {
-        "year": "2019",
-        "country": "US"
+        "country": "US",
+        "year": "2020",
+        "month": "12",
+        "day": "25"
     }
 
-    urlb = f"{url}?{urlencode(query_params)}"
+    urlb = f"{url}?api_key={api_key}&{urlencode(query_params)}"
+    print(urlb)
 
-    headers = {
-        "X-RapidAPI-Key": api_key,
-        "X-RapidAPI-Host": "calendarific.p.rapidapi.com"
-    }
-
-    request = urllib.request.Request(urlb, headers=headers)
+    request = urllib.request.Request(urlb)
 
     try:
         with urllib.request.urlopen(request) as response:
@@ -163,18 +135,6 @@ def access_calendar():
         print(e.read().decode())
     except urllib.error.URLError as e:
         print(f"error: {e.reason}")
-
-    #option 4, rapidapi suggested
-    # querystring = {"year":"2019","country":"us"}
-
-    # headers = {
-    #     "x-rapidapi-key": api_key,
-    #     "x-rapidapi-host": "calendarific.p.rapidapi.com"
-    # }
-
-    # response = requests.get(url, headers=headers, params=querystring)
-
-    # print(response.json())
 
 def access_nws():
     api_key = open("../keys/key_geodb.txt", "r").read().strip()
@@ -198,4 +158,4 @@ def access_nws():
     except urllib.error.URLError as e:
         print(f"error: {e.reason}")
 
-view_geodb()
+access_calendar()
