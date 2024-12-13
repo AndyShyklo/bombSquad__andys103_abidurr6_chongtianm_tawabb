@@ -2,13 +2,16 @@
 Bomb Squad: Andy Shyklo, Abidur Rahman, Mark Ma, Tawab Berri
 SoftDev
 P01: Topher Time
-2024-05-12
-Time Spent: 3 hours
+2024-12-12
+Time Spent: 6 hours
 """
 
-import sqlite3, urllib.request, json
+import sqlite3, urllib.request, json, time, sys, io, traceback, requests
+from urllib.request import Request
 from flask import render_template, Flask, session, request, redirect
 from urllib.parse import urlencode
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 DB_FILE="geo.db"
 
@@ -20,12 +23,12 @@ def createDB():
     c.execute(command)
     db.commit()
 
-def access_geodb():
-    api_key = open("../keys/key_geodb.txt", "r").read().strip()
+def geodb(num):
+    api_key = open("../keys/key_calendarific.txt", "r").read().strip()
 
     url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/"
     query_params = {
-        "offset": 50,
+        "offset": num,
         "minPopulation": 1000000
     }
 
@@ -37,65 +40,91 @@ def access_geodb():
     }
 
     request = urllib.request.Request(urlb, headers=headers)
+    return(request)
 
+def access_geodb():
     createDB()
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
+    i = 0
+
     try:
-        with urllib.request.urlopen(request) as response:
-            data = json.load(response)
-            print(json.dumps(data, indent=2))
-            for i in range (0, 2):
-                try:
-                    print("A")
-                    x1 = data["data"]
-                    print(type(x1))
-                    for item in x1:
-                        geoid = item["id"]
-                        type = item["type"]
-                        city = item["city"]
+        while (True):
+            time.sleep(2)
+            with urllib.request.urlopen(geodb(i)) as response:
+                data = json.load(response)
+                print(json.dumps(data, indent=2))
+                print("A")
+                cities = data.get("data", [])
+                print(type(cities))
+                print(cities)
+
+                if not cities:
+                    print("done")
+                    break
+
+                for item in cities:
+                    geoid = item["id"]
+                    type1 = item["type"]
+                    city = item["city"]
+                    print(city)
+                    print(type(city))
+                    try:
                         region = item["region"]
+                        print(region)
+                        print(type(region))
                         regionCode = item["regionCode"]
-                        country = item["country"]
-                        countryCode = item["countryCode"]
-                        latitude = item["latitude"]
-                        longitude = item["longitude"]
-                        min_pop = item["population"]
-                        command = f"INSERT INTO geodb (geoid, type, city, region, regionCode, country, countryCode, latitude, longitude, min_pop) VALUES ({geoid}, {type}, {city}, {region}, {regionCode}, {country}, {countryCode}, {latitude}, {longitude}, {min_pop})"
-                        c.execute(command)
-                        db.commit()
-                except Exception as e:
-                    print("error")
+                    except Exception as b:
+                        print("b error")
+                    country = item["country"]
+                    countryCode = item["countryCode"]
+                    latitude = item["latitude"]
+                    longitude = item["longitude"]
+                    min_pop = item["population"] #https://www.psycopg.org/docs/usage.html#passing-parameters-to-sql-queries
+                    command = f"INSERT INTO geodb (geoid, type, city, region, regionCode, country, countryCode, latitude, longitude, min_pop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    print(command)
+                    c.execute(command, (geoid, type1, city, region, regionCode, country, countryCode, latitude, longitude, min_pop))
+                    db.commit()
+                i += 5
     except urllib.error.HTTPError as e:
         print(f"httperror")
         print(e.read().decode())
     except urllib.error.URLError as e:
         print(f"urlerror")
 
+
+    ret = c.execute("SELECT * FROM geodb")
+    print(ret.fetchall())
     # createDB()
     # i = 0
 
     # c.execute(command)
     # db.commit()
 
+def view_geodb():
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    ret = c.execute("SELECT * FROM geodb")
+    print(ret.fetchall())
+
 def access_calendar():
-    api_key = open("../keys/key_calendarific.txt", "r").read().strip()
+    api_key = open("../keys/key_abstract.txt", "r").read().strip()
 
-    url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
+    url = "https://holidays.abstractapi.com/v1/"
+
     query_params = {
-        "countryIds": "US",
-        "minPopulation": 100000
+        "country": "US",
+        "year": "2020",
+        "month": "12",
+        "day": "25"
     }
 
-    urlb = f"{url}?{urlencode(query_params)}"
+    urlb = f"{url}?api_key={api_key}&{urlencode(query_params)}"
+    print(urlb)
 
-    headers = {
-        "X-RapidAPI-Key": api_key,
-        "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com"
-    }
-
-    request = urllib.request.Request(urlb, headers=headers)
+    request = urllib.request.Request(urlb)
 
     try:
         with urllib.request.urlopen(request) as response:
@@ -108,22 +137,16 @@ def access_calendar():
         print(f"error: {e.reason}")
 
 def access_nws():
-    api_key = open("../keys/key_nws.txt", "r").read().strip()
+    api_key = open("../keys/key_geodb.txt", "r").read().strip()
 
-    url = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
-    query_params = {
-        "countryIds": "US",
-        "minPopulation": 100000
-    }
-
-    urlb = f"{url}?{urlencode(query_params)}"
+    url = "https://national-weather-service.p.rapidapi.com/points/{70.08},{70.08}"
 
     headers = {
         "X-RapidAPI-Key": api_key,
-        "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com"
+	    "X-RapidAPI-Host": "national-weather-service.p.rapidapi.com"
     }
 
-    request = urllib.request.Request(urlb, headers=headers)
+    request = urllib.request.Request(url, headers=headers)
 
     try:
         with urllib.request.urlopen(request) as response:
@@ -135,4 +158,4 @@ def access_nws():
     except urllib.error.URLError as e:
         print(f"error: {e.reason}")
 
-access_geodb()
+access_calendar()
