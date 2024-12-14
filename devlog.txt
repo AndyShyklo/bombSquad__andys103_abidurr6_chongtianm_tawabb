@@ -39,12 +39,12 @@ andyS -- 2024-12-05 11:00
 markM -- 2024-12-05 11:00
   * Started on integrating map in home page.
 
-andyS -- 2024-12-05 11:00
-  * started access to calendarific api request
-
 tawabB -- 2024-12-06 10:45
   * created branch DTB
   * added tophers_head.png
+
+andyS -- 2024-12-06 11:00
+  * started access to calendarific api request
 
 markM -- 2024-12-09 11:00
   * Implemented method in index.html to display an image of topher's head on a specific coordinate on the map image.
@@ -74,9 +74,12 @@ markM -- 2024-12-12 11:00
 tawabB -- 2024-12-12 11:01
   * begun topher algorithm to determine next possible location
 
-andyS -- 2024-12-11 17:49
+andyS -- 2024-12-12 17:49
   * other apis: worked with nws and calendarific api, but faced bugs in both. calendarific is not authorizing, nws is only america
   * geo db: added all cities over 1m population to geo.db
+
+markM -- 2024-12-13 11:00
+  * finished up index.html default homepage mapping
 
 andyS -- 2024-12-13 11:02
   * abstract api: replaced calendarific api with a working abstract api
