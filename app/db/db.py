@@ -9,6 +9,7 @@ Time Spent: 6 hours
 import sqlite3, urllib.request, json, time, sys, io, traceback, requests
 from urllib.request import Request
 from flask import render_template, Flask, session, request, redirect
+from datetime import datetime
 from urllib.parse import urlencode
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -159,4 +160,16 @@ def access_nws():
     except urllib.error.URLError as e:
         print(f"error: {e.reason}")
 
+def find_holidays_today(countryCode):
+    day = datetime.now().day
+    month = datetime.now().month
+    year = datetime.now().year
+    print(year)
+    print(month)
+    print(day)
+    access_calendar(countryCode, year, month, day)
+
 access_calendar("US", "2024", "12", "13")
+time.sleep(2)
+print("space")
+find_holidays_today("US")
