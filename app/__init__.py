@@ -10,6 +10,7 @@ Time Spent: 3 hours
 from flask import Flask, render_template, session, request, redirect, url_for
 import sqlite3, urllib.request, urllib.parse, json
 
+
 app = Flask(__name__)
 
 def get_coord(long, lat):
@@ -17,6 +18,7 @@ def get_coord(long, lat):
 
 @app.route('/', methods = ['GET', 'POST'])
 def map_page():
+    '''
     try:
         geodb_key = open("keys/key_geodb.txt", "r").read().strip().rstrip()
         #print(geodb_key)
@@ -24,6 +26,7 @@ def map_page():
         return "YOU MUST CREATE A keys/key_geodb.txt FILE AND STORE YOUR API KEY IN IT!!"
     if len(geodb_key) == 0:
         return "YOU MUST ADD YOUR API KEY IN keys/key_geodb.txt !!!"
+    '''
     form_type = request.form.get('form_type')
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
@@ -32,8 +35,12 @@ def map_page():
     # longitude = (1.3) * -95/2 -75 # range [-180, 180]
     # latitude = -35.8/2 -30 # range [-90, 90]
     longitude, latitude = get_coord(-98.3, 38.5)
-    day = -1
+    day = "Initial Setup"
     return render_template('index.html', longitude = (longitude + 180) / 360, latitude = (latitude + 90) / 180, day = day)
+
+@app.route('/day/<day>')
+def map_day(day):
+   return "hi" 
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():
