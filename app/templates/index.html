@@ -83,7 +83,15 @@ max-width: 100%;
 			Day: {{day}}
 		</h2>
 		</center>
-		<div class="bg"></div>
+  
+    <form action="/", method='POST'>
+    Enter Year (2000-2024): <input type="text" id="year" name="year"> 
+    Enter Month (1-12): <input type="text" id="month" name="month">
+    Enter Day: <input type="text" id="day" name="day">
+    <input type="submit" value="Submit">
+    </form>
+
+    <div class="bg"></div>
 
 
 		<button onclick="showImage()">Show Topher</button>
