@@ -86,8 +86,15 @@ andyS -- 2024-12-13 11:02
   * made api methods: methods for accessing year and day country holiday information
   * weather api: found new api for weather
 
+markM -- 2024-12-15 19:13
+  * added custom time selection form into home page
+
+abidurR -- 2024-12-15 23:12
+  * added adjustment of month and year in calendar
+
 andyS -- 2024-12-16 1:02
   * abstract api: successfully replaced for calendar api, made reach methods, access methods, and holiday info for each country
   * made api methods: made methods for each api to work well together
   * algorithm: made algorithm for calculating topher's location
   * made history total db: made organization system for all dates and cities. issue: api key for abstract called a lot
+
