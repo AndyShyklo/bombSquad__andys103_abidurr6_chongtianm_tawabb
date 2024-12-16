@@ -83,3 +83,6 @@ markM -- 2024-12-13 11:00
 
 markM -- 2024-12-15 19:13
   * added custom time selection form into home page
+
+abidurR -- 2024-12-15 23:12
+  * added adjustment of month and year in calendar
