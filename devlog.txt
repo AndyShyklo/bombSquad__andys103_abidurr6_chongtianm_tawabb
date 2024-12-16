@@ -54,5 +54,32 @@ tawabB -- 2024-12-10 10:45
   * Implemented method for accessing different information of countries stored in database
 
 abidurR --2024-12-11 10:46
- * Adjusted screen resizing on index.html depending on device and window size
- * Started working on past locations page and appropriate routing
+  * Adjusted screen resizing on index.html depending on device and window size
+  * Started working on past locations page and appropriate routing
+
+tawabB -- 2024-12-11 10:55
+  * Fixed app path in __init__.py
+
+markM -- 2024-12-11 11:00
+  * Continue bugfixing and calculating map offset.
+
+andyS -- 2024-12-11 11:02
+  * geodb api: started accessing and uploading all cities greater than 1m to Database
+  * framework: laid out framework for other apis + methods for accessing
+
+markM -- 2024-12-12 11:00
+  * Bugfixed index.html and displaying of map
+  * Adjusted calculations for pinpointing on the map
+
+tawabB -- 2024-12-12 11:01
+  * begun topher algorithm to determine next possible location
+
+andyS -- 2024-12-11 17:49
+  * other apis: worked with nws and calendarific api, but faced bugs in both. calendarific is not authorizing, nws is only america
+  * geo db: added all cities over 1m population to geo.db
+
+markM -- 2024-12-13 11:00
+  * finished up index.html default homepage mapping
+
+markM -- 2024-12-15 19:13
+  * added custom time selection form into home page
