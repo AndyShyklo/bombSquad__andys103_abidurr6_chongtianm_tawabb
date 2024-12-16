@@ -19,36 +19,48 @@ def get_coord(long, lat):
 def map_page():
     longitude, latitude = get_coord(-98.3, 38.5)
     day = "Initial Setup"
-    
-    form_type = request.form.get('form_type')
-    if form_type == 'calendar':
-        return redirect(url_for('calendar_page'))
+    city = ""
 
-    return render_template('index.html', longitude=(longitude + 180) / 360, latitude=(latitude + 90) / 180, day=day)
+    y, m, d, = -1, -1, -1
+
+    if request.method == "POST":
+        y = request.form["year"]
+        m = request.form["month"]
+        d = request.form["day"]
+        day = f'{m}/{d}/{y}'
+
+    # [city, country name, longitude, latitude, image, image desc, image author, [holiday1, holiday2, ...]]
+    
+    if y != -1:
+        l = ['Chicago', 'US', -87.5, 41.7, "https://www.usbeacon.com/images/Illinois/maps/Chicago_o.gif", "desc", "author", ['holiday1', 'holiday2']]
+        longitude, latitude = get_coord(l[2], l[3])
+        city = f'{l[0]}, {l[1]}'  
+
+    return render_template('index.html', longitude=(longitude + 180) / 360, latitude=(latitude + 90) / 180, day=day, city=city)
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():
-    
+
     now = datetime.now()
     month = request.args.get('month', now.month, type=int)
     year = request.args.get('year', now.year, type=int)
 
-   
+
     first_day = calendar.monthrange(year, month)[0]  
     num_days = calendar.monthrange(year, month)[1]
 
-    
+
     days = [day for day in range(1, num_days + 1)]
 
-    
+
     weeks = []
     week = [''] * 7  
 
-    
+
     for i in range(first_day):
         week[i] = ''
 
-    
+
     for day in days:
         week[first_day] = day
         first_day += 1
@@ -57,11 +69,11 @@ def calendar_page():
             week = [''] * 7
             first_day = 0
 
- 
+
     if any(week):
         weeks.append(week)
 
-    
+
     if request.method == 'POST':
         if 'prev_month' in request.form:
             if month == 1:
