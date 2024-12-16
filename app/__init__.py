@@ -27,6 +27,16 @@ def map_page():
     if len(geodb_key) == 0:
         return "YOU MUST ADD YOUR API KEY IN keys/key_geodb.txt !!!"
     '''
+    longitude, latitude = get_coord(-98.3, 38.5)
+    day = "Initial Setup"
+    y, m, d, = -1, -1, -1
+    
+    if request.method == "POST":
+        y = request.form["year"]
+        m = request.form["month"]
+        d = request.form["day"]
+        day = f'{m}/{d}/{y}'
+
     form_type = request.form.get('form_type')
     if form_type == 'calendar':
         return(redirect(url_for('calendar_page')))
@@ -34,13 +44,9 @@ def map_page():
     # -95
     # longitude = (1.3) * -95/2 -75 # range [-180, 180]
     # latitude = -35.8/2 -30 # range [-90, 90]
-    longitude, latitude = get_coord(-98.3, 38.5)
-    day = "Initial Setup"
+    
     return render_template('index.html', longitude = (longitude + 180) / 360, latitude = (latitude + 90) / 180, day = day)
 
-@app.route('/day/<day>')
-def map_day(day):
-   return "hi" 
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():
