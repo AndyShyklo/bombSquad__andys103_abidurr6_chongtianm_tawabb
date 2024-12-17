@@ -20,6 +20,9 @@ def map_page():
     longitude, latitude = get_coord(-98.3, 38.5)
     day = "Initial Setup"
     city = ""
+    image_link = ""
+    image_author = ""
+    holidays = []
 
     y, m, d, = -1, -1, -1
 
@@ -34,9 +37,16 @@ def map_page():
     if y != -1:
         l = ['Chicago', 'US', -87.5, 41.7, "https://www.usbeacon.com/images/Illinois/maps/Chicago_o.gif", "desc", "author", ['holiday1', 'holiday2']]
         longitude, latitude = get_coord(l[2], l[3])
-        city = f'{l[0]}, {l[1]}'  
+        city = f'{l[0]}, {l[1]}'
+        image_link = l[4]
+        image_author = l[6]
+        holidays = l[7]
 
-    return render_template('index.html', longitude=(longitude + 180) / 360, latitude=(latitude + 90) / 180, day=day, city=city)
+    return render_template('index.html', longitude=(longitude + 180) / 360, latitude=(latitude + 90) / 180, day=day, city=city,
+                           image_link = image_link,
+                           image_author = image_author,
+                           holidays = holidays
+                           )
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():
