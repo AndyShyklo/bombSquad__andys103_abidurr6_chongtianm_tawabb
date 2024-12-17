@@ -213,7 +213,7 @@ def find_most_holidays_today():
     for key, value in holis.items():
         if value > 0:
             holis2[key] = value
-    
+
     print(holis2)
     return(holis2)
 
@@ -242,7 +242,7 @@ def find_most_holidays(year, month, day):
 
     if len(holis2) == 0:
         return([holis, False])
-    
+
     print(holis2)
     return([holis2, True])
 
@@ -297,7 +297,7 @@ def calculate(year, month, day):
         for key, value in holis.items():
             if value == 1:
                 holisScore[key] = value * amount_celebrating(key) * 2
-            elif value == 2: 
+            elif value == 2:
                 holisScore[key] = value * amount_celebrating(key) * 6
             elif value >= 3:
                 holisScore[key] = value * amount_celebrating(key) * 10
@@ -320,7 +320,7 @@ def calculate(year, month, day):
     city = randomize_cities(country)
 
     return([city, holisScore[country], totalScore])
-            
+
 def total_info(year, month, day):
     # ans = [(1782, 118499, 'CITY', 'Houston', 'Texas', 'TX', 'United States of America', 'US', 29.762777777, -95.383055555, 2304580), 10000, 100000]
     ans = calculate(year, month, day)
@@ -366,6 +366,27 @@ def createTotalDB():
     c.execute(command)
     db.commit()
     db.close()
+
+def passInfo(year, month, day):
+    #[city, country, longitude, latitude, image, image_desc, image_author, [holiday1, holiday2, ...]]
+    DB2_FILE="total.db"
+
+    print("passInfo")
+    db = sqlite3.connect(DB2_FILE)
+    c = db.cursor()
+
+    ret = c.execute("SELECT city, country, longitude, latitude, image, image_desc, image_author, holidays FROM total WHERE year = ? AND month = ? AND day = ?", (year, month, day,))
+    oeo = ret.fetchall()
+    if oeo:
+        sevenT = json.loads(oeo[0][7])
+
+        arr = [oeo[0][0], oeo[0][1], oeo[0][2], oeo[0][3], oeo[0][4], oeo[0][5], oeo[0][6], sevenT]
+        print(arr)
+        return(arr)
+    else:
+        print("Error, date not in database")
+        return("Error, date not in database")
+    
 
 def insertCity(city):
     DB2_FILE="total.db"
@@ -417,4 +438,4 @@ def viewCity():
 # print(data["results"][0]["alt_description"])
 # print(data["results"][0]["user"]["first_name"] + data["results"][0]["user"]["last_name"])
 
-total_info(2024, 12, 15)
+passInfo(2024, 12, 15)
