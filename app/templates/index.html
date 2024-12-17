@@ -1,4 +1,3 @@
-
 <html>
 	<head>
 		<title> The Topher Tracker </title>
@@ -8,19 +7,14 @@
 		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 		<style>
 body, html {
-max-width: 100%;
-    height: auto;
-    width: auto\9; 
+	max-width: 100%;
+	height: auto;
+	width: auto\9; 
 }
 
 .bg {
-	/* The image used */
 	background-image: url("static/world_map.jpg");
-
-	/* Full height */
 	height: 100%; 
-
-	/* Center and scale the image nicely */
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -40,20 +34,14 @@ max-width: 100%;
 
 							var image = new Image;
 							image.src = "static/world_map.jpg";
-							// margin = 20;
 
 							l = image.offsetLeft;
 							t = image.offsetTop;
 							w = image.width;
 							h = image.height;
 
-							//offY = {{ latitude | tojson }} * h
-							//offX = {{ longitude | tojson }} * w
-							// offX = parseInt(Math.random() * w);
-							//offY = parseInt(Math.random() * h);
-
-							// if(offX > margin) offX -= margin;
-							// if(offY > margin) offY -= margin;
+							offY = {{ latitude | tojson }} * h
+							offX = {{ longitude | tojson }} * w
 
 							l += offX;
 							t += offY;
@@ -68,7 +56,7 @@ max-width: 100%;
 											document.body.appendChild(newImage);
 										}
 
-			
+
 
 		</script>
 
@@ -77,26 +65,33 @@ max-width: 100%;
 	<body>
 
 		First time? Resize your browser window until Topher is in the United States (or as close as possible)
-		
+
 		<center>
-		<h2>
-			Day: {{day}}
-		</h2>
+			<h2>
+				Day: {{day}} <br>
+				Topher's Location: {{city}}, {{country}}
+			</h2>
 		</center>
-  
-    <form action="/", method='POST'>
-    Enter Year (2000-2024): <input type="text" id="year" name="year"> 
-    Enter Month (1-12): <input type="text" id="month" name="month">
-    Enter Day: <input type="text" id="day" name="day">
-    <input type="submit" value="Submit">
-    </form>
 
-    <div class="bg"></div>
+		<div class="bg"></div>
 
 
-		<button onclick="showImage()">Show Topher</button>
+		<center> <button onclick="showImage()">Show Topher</button> </center>
 
-		<form method="POST">
+
+		<br>
+
+		<h2> Change Day? </h2>
+		<form action="/", method='POST'>
+			Enter Year (2000-2024): <input type="text" id="year" name="year">
+			Enter Month (1-12): <input type="text" id="month" name="month">
+			Enter Day: <input type="text" id="day" name="day">
+			<input type="submit" value="Submit">
+		</form>
+
+		<br>
+
+		<form action = "/calendar", method="GET">
 			<input type="submit" name="form_type" value="calendar">
 		</form>
 	</body>
