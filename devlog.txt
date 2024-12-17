@@ -107,3 +107,6 @@ abidurR -- 2024-12-16 20:53
 
 markM -- 2024-12-16 23:00
   * Final touch ups. Integrated db.py with __init__.py and made sure it displayed information properly.
+
+abidurR --2024-12-17 1:03
+  * Allowed dates to be sent to the main page from the calendar
