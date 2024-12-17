@@ -26,60 +26,44 @@ def map_page():
 
     return render_template('index.html', longitude=(longitude + 180) / 360, latitude=(latitude + 90) / 180, day=day)
 
+def calFunction(year, month):
+    text_cal = calendar.HTMLCalendar(firstweekday=0)
+    return text_cal.formatmonth(year, month)
+
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():
-    
     now = datetime.now()
-    month = request.args.get('month', now.month, type=int)
-    year = request.args.get('year', now.year, type=int)
+    current_year = now.year
+    current_month = now.month
 
-   
-    first_day = calendar.monthrange(year, month)[0]  
-    num_days = calendar.monthrange(year, month)[1]
-
-    
-    days = [day for day in range(1, num_days + 1)]
-
-    
-    weeks = []
-    week = [''] * 7  
-
-    
-    for i in range(first_day):
-        week[i] = ''
-
-    
-    for day in days:
-        week[first_day] = day
-        first_day += 1
-        if first_day == 7:  
-            weeks.append(week)
-            week = [''] * 7
-            first_day = 0
-
- 
-    if any(week):
-        weeks.append(week)
-
-    
     if request.method == 'POST':
+        year = int(request.form.get('year', current_year))
+        month = int(request.form.get('month', current_month))
+
         if 'prev_month' in request.form:
-            if month == 1:
+            month -= 1
+            if month < 1:  
                 month = 12
-                year -= 1
-            else:
-                month -= 1
+                year -= 1  
         elif 'next_month' in request.form:
-            if month == 12:
+            month += 1
+            if month > 12:  
                 month = 1
-                year += 1
-            else:
-                month += 1
+                year += 1  
+        elif 'weather' in request.form:
+            print("weather")
+            return redirect(url_for('weather_page'))
+        elif 'home' in request.form:
+            print("home")
+            return redirect(url_for('map_page'))
+    else:
+        year = current_year
+        month = current_month
 
-
+    calHTML = calFunction(year, month)
     month_name = calendar.month_name[month]
 
-    return render_template('calendar.html', weeks=weeks, month=month, year=year, month_name=month_name)
+    return render_template('calendar.html', calContent=calHTML, month=month, year=year, month_name=month_name)
 
 @app.route("/weather", methods=['GET', 'POST'])
 def weather_page():

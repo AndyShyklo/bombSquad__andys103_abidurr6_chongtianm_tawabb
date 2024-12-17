@@ -7,47 +7,35 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-blue-100 flex items-center justify-center h-screen m-0 flex-col">
-    <h2 class="text-2xl font-bold mb-4">{{ month_name }} {{ year }}</h2>
+    <h2 class="text-3xl font-bold mb-6 text-gray-800">{{ month_name }} {{ year }}</h2>
+    
     <div class="mb-4">
         <form method="POST" class="inline">
             <input type="hidden" name="month" value="{{ month }}">
-            <input type=" hidden" name="year" value="{{ year }}">
-            <button name="prev_month" class="bg-green-600 text-white px-4 py-2 rounded">Previous Month</button>
+            <input type="hidden" name="year" value="{{ year }}">
+            <button name="prev_month" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Previous Month</button>
         </form>
         <form method="POST" class="inline">
             <input type="hidden" name="month" value="{{ month }}">
             <input type="hidden" name="year" value="{{ year }}">
-            <button name="next_month" class="bg-green-600 text-white px-4 py-2 rounded">Next Month</button>
+            <button name="next_month" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Next Month</button>
         </form>
     </div>
-    <table class="w-4/5 max-w-2xl bg-white shadow-lg">
-        <thead>
-            <tr>
-                <th class="border p-2 bg-green-600 text-white">Sun</th>
-                <th class="border p-2 bg-green-600 text-white">Mon</th>
-                <th class="border p-2 bg-green-600 text-white">Tue</th>
-                <th class="border p-2 bg-green-600 text-white">Wed</th>
-                <th class="border p-2 bg-green-600 text-white">Thu</th>
-                <th class="border p-2 bg-green-600 text-white">Fri</th>
-                <th class="border p-2 bg-green-600 text-white">Sat</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for week in weeks %}
-            <tr>
-                {% for day in week %}
-                <td class="border p-2">{{ day if day != '' else '' }}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="mt-4">
+    
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <table class="min-w-full text-center border-collapse">
+            <tbody>
+                {{ calContent | safe }}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-6">
         <form method="POST">
-            <input type="submit" name="form_type" value="weather" class="bg-blue-500 text-white px-4 py-2 rounded">
+            <input type="submit" name="weather" value="weather" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
         </form>
         <form method="POST" class="mt-2">
-            <input type="submit" name="form_type" value="home" class="bg-blue-500 text-white px-4 py-2 rounded">
+            <input type="submit" name="home" value="home" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
         </form>
     </div>
 </body>
