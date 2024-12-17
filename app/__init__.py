@@ -76,9 +76,7 @@ class CustomHTMLCalendar(calendar.HTMLCalendar):
             </td>'''
 
     def formatmonth(self, year, month):
-        # Call the original formatmonth to get the basic structure
         month_str = super().formatmonth(year, month)
-        # Add custom CSS for styling
         custom_css = '''
         <style>
             .day {
