@@ -111,3 +111,8 @@ markM -- 2024-12-16 23:00
 abidurR --2024-12-17 1:03
   * Allowed dates to be sent to the main page from the calendar
   * Finished calendar and date crosscheck with db
+
+andy -- 2024-12-17 3:24
+  * created methods for integration into frontend, with all functional days integrated on maps and information integrated on the calendar.
+  * populated the total.db database with locations and location history
+  * edited design doc to match current standing
