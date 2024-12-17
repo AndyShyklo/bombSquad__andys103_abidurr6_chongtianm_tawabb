@@ -2,23 +2,40 @@
 Bomb Squad: Andy Shyklo, Abidur Rahman, Mark Ma, Tawab Berri
 SoftDev
 P01: Topher Time
-2024-03-12
-Time Spent: 3 hours
+2024-17-12
+Time Spent: 20 hours
 """
 
 from flask import Flask, render_template, request, redirect, url_for
-import calendar
+import calendar, os
 from datetime import datetime
 from db.db import passInfo
 
 app = Flask(__name__)
 
+keys = [
+    "keys/key_abstract.txt",
+    "keys/key_geodb.txt",
+    "keys/key_unsplash.txt"
+]
+
 def get_coord(long, lat):
-    return [(1.3) * long / 2 - 75, -lat / 2 - 30]
+    return [(1.23) * long / 2 - 75, (-lat / 2 - 30) * 0.97 + 15]
 
 @app.route('/', methods=['GET', 'POST'])
 def map_page():
     print("hello")
+
+    bad = False
+    badKeys = []
+    for key in keys:
+        if not os.path.exists(key):
+            bad = True
+            badKeys.append(key)
+
+    if bad:
+        return render_template("error.html", missing_files=badKeys)
+
     calDay = ""
     calMonth = ""
     calYear = ""
@@ -43,6 +60,8 @@ def map_page():
     if y != -1:
         #l = ['Chicago', 'US', -87.5, 41.7, "https://www.usbeacon.com/images/Illinois/maps/Chicago_o.gif", "desc", "author", ['holiday1', 'holiday2']]
         l = passInfo(y, m, d)
+        if l == -1:
+            return(render_template("error2.html"))
         try:
             longitude, latitude = get_coord(l[2], l[3])
         except:
@@ -135,6 +154,16 @@ def calFunction(year, month):
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar_page():
+    
+    bad = False
+    badKeys = []
+    for key in keys:
+        if not os.path.exists(key):
+            bad = True
+            badKeys.append(key)
+
+    if bad:
+        return render_template("error.html", missing_files=badKeys)
     now = datetime.now()
     current_year = now.year
     current_month = now.month

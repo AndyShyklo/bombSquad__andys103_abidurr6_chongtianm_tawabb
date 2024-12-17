@@ -71,36 +71,60 @@ body, html {
 	<body>
 
 		First time? Resize your browser window until Topher is in the United States (or as close as possible)
-
+	
 		<center>
-			<h2>
-				Day: {{day}} <br>
-    Topher's Location: {{city}}
-			</h2>
+		<h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl p-6">
+			<span class="block">
+				Topher
+				<span class="text-transparent bg-clip-text bg-gradient-to-tr to-cyan-500 from-blue-600">
+					Time
+				</span>
+				&trade;
+			</span>
+		</h1>
 		</center>
 
-		<div class="bg"></div>
-
-
-		<center> <button onclick="showImage()">Show Topher</button>
-
-        <br> <br>
-        <div class="myImage"> <img src="{{ image_link }}" > </div>
-        By @{{ image_author }}
-        </center>
+		<center>
+		<div class="max-w-sm rounded overflow-hidden shadow-lg">
+			<br>
+		  <h2 class="font-semibold">
+			Day: {{day}} <br>
+			Topher's Location: {{city}}
+		  </h2>
+		  <br>
+		</div>
+		</center>
 		<br>
-
-        Relevant Holidays: <br>
-        {% for x in holidays %}
-            Holiday {{ loop.index }}: {{ x }}
-            <br>
-        {% endfor %}
-        <br><br>
+	
+		<div class="bg"></div>
+	
+		<br>
+		<center>
+		  <button class= "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="showImage()">Show Topher</button>
+		  <br> <br> 
+		  <div class="max-w-sm rounded overflow-hidden shadow-lg">
+			<br>
+		  Image from Topher's Telephotographs&trade; (Original Image by @{{ image_author }})
+		  <br>
+		  <div class="myImage">
+			<img src="{{ image_link }}" >
+		  </div>
+		</div>
+		</center>
+		<br>
+	
+		Relevant Holidays: <br>
+		{% for x in holidays %}
+		  Holiday {{ loop.index }}: {{ x }}
+		  <br>
+		{% endfor %}
+		<br><br>
 		<h2> Change Day? </h2>
-
-		<form action = "/calendar", method="GET">
-			<input type="submit" name="form_type" value="Calendar (Change Date)">
+	
+		<form action="/calendar" method="GET">
+		  <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="form_type" value="Calendar (Change Date)">
 		</form>
-	</body>
-
-</html>
+	  </body>
+	
+	</html>
+	
