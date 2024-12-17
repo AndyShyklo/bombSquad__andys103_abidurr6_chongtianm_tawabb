@@ -377,16 +377,16 @@ def passInfo(year, month, day):
 
     ret = c.execute("SELECT city, country, longitude, latitude, image, image_desc, image_author, holidays FROM total WHERE year = ? AND month = ? AND day = ?", (year, month, day,))
     oeo = ret.fetchall()
-    print(oeo)
-    print(type(oeo))
-    print(len(oeo))
-    print(oeo[0])
-    print(oeo[0][7])
-    print(type(oeo[0][7]))
-    arr = [oeo[0][0], oeo[0][1], oeo[0][2], oeo[0][3], oeo[0][4], oeo[0][5], oeo[0][6], oeo[0][7]]
+    if oeo:
+        sevenT = json.loads(oeo[0][7])
 
-
-
+        arr = [oeo[0][0], oeo[0][1], oeo[0][2], oeo[0][3], oeo[0][4], oeo[0][5], oeo[0][6], sevenT]
+        print(arr)
+        return(arr)
+    else:
+        print("Error, date not in database")
+        return("Error, date not in database")
+    
 
 def insertCity(city):
     DB2_FILE="total.db"
