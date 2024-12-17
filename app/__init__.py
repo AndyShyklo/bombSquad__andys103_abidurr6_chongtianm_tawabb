@@ -64,17 +64,34 @@ class CustomHTMLCalendar(calendar.HTMLCalendar):
         self.year = year
         self.month = month
 
+
     def formatday(self, day, weekday):
+        try:
+            l = passInfo(self.year, self.month, day)
+            longitude, latitude = get_coord(l[2], l[3])
+            valid_day = True
+        except:
+            valid_day = False
+
+        if valid_day == True:
+            mName = "greenDay"
+            act = "/"
+            cl = "date-button"
+        else:
+            mName = "redDay"
+            act = "/calendar"
+            cl = "r-button"
+
         if day == 0:
             return '<td class="noday">&nbsp;</td>'  
         else:
             return f'''
             <td class="day">
-                <form method="POST" action="/" name="greenDay" value = "bye">
+                <form method="POST" action={act} name={mName} value = "bye">
                     <input type="hidden" name="day" value="{day}">
                     <input type="hidden" name="month" value="{self.month}">
                     <input type="hidden" name="year" value="{self.year}">
-                    <button type="submit" class="date-button">{day}</button>
+                    <button type="submit" class={cl}>{day}</button>
                 </form>
             </td>'''
 
@@ -95,6 +112,16 @@ class CustomHTMLCalendar(calendar.HTMLCalendar):
                 padding: 5px 10px;
                 cursor: pointer;
             }
+
+            .r-button {
+                background-color: red; /* Red button */
+                color: white; /* White text */
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+
             .noday {
                 background-color: #f0f0f0; /* Light gray for empty days */
             }
