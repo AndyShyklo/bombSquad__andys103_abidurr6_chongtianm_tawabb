@@ -143,17 +143,6 @@ def calendar_page():
 
     return render_template('calendar.html', calContent=calHTML, month=month, year=year, month_name=month_name)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-@app.route("/weather", methods=['GET', 'POST'])
-def weather_page():
-    form_type = request.form.get('form_type')
-    if form_type == 'calendar':
-        return redirect(url_for('calendar_page'))
-    return render_template('weather.html')
-
 if __name__ == "__main__":
     app.debug = True
     app.run()
