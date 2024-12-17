@@ -46,8 +46,8 @@ body, html {
 							w = image.width;
 							h = image.height;
 
-							offY = {{ latitude | tojson }} * h
-							offX = {{ longitude | tojson }} * w
+							offY = (latitude | tojson) * h
+							offX = (longitude | tojson) * w
 
 							l += offX;
 							t += offY;

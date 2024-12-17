@@ -20,7 +20,14 @@ keys = [
 ]
 
 def get_coord(long, lat):
-    return [(1.23) * long / 2 - 75, (-lat / 2 - 30) * 0.97 + 15]
+    return [(1.23) * long / 2 - 80, (-lat / 2 - 30) * 0.97]
+
+"""	
+height: 100%; 
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+    """
 
 @app.route('/', methods=['GET', 'POST'])
 def map_page():
