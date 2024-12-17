@@ -100,3 +100,8 @@ andyS -- 2024-12-16 1:02
 
 markM -- 2024-12-16 11:00
   * Started working on displaying crucial information on home page (front end) and integrating with andy's backend.
+
+andy -- 2024-12-17 2:24
+  * created methods for integration into frontend, with all functional days integrated on maps and information integrated on the calendar.
+  * populated the total.db database with locations and location history
+  * edited design doc to match current standing
