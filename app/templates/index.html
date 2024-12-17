@@ -97,15 +97,9 @@ body, html {
         {% endfor %}
         <br><br>
 		<h2> Change Day? </h2>
-		<form action="/", method='POST'>
-			Enter Year (2000-2024): <input type="text" id="year" name="year">
-			Enter Month (1-12): <input type="text" id="month" name="month">
-			Enter Day: <input type="text" id="day" name="day">
-			<input type="submit" value="Submit">
-		</form>
 
 		<form action = "/calendar", method="GET">
-			<input type="submit" name="form_type" value="calendar">
+			<input type="submit" name="form_type" value="Calendar (Change Date)">
 		</form>
 	</body>
 

@@ -43,7 +43,10 @@ def map_page():
     if y != -1:
         #l = ['Chicago', 'US', -87.5, 41.7, "https://www.usbeacon.com/images/Illinois/maps/Chicago_o.gif", "desc", "author", ['holiday1', 'holiday2']]
         l = passInfo(y, m, d)
-        longitude, latitude = get_coord(l[2], l[3])
+        try:
+            longitude, latitude = get_coord(l[2], l[3])
+        except:
+            return "Day is not supported. Select another day."
         city = f'{l[0]}, {l[1]}'
         image_link = l[4]
         image_author = l[6]
@@ -76,9 +79,7 @@ class CustomHTMLCalendar(calendar.HTMLCalendar):
             </td>'''
 
     def formatmonth(self, year, month):
-        # Call the original formatmonth to get the basic structure
         month_str = super().formatmonth(year, month)
-        # Add custom CSS for styling
         custom_css = '''
         <style>
             .day {
