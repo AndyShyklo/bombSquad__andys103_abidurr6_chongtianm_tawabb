@@ -100,3 +100,7 @@ andyS -- 2024-12-16 1:02
 
 markM -- 2024-12-16 11:00
   * Started working on displaying crucial information on home page (front end) and integrating with andy's backend.
+
+abidurR -- 2024-12-16 20:53
+  * Calendar can switch between months and years using datetime and calendar module.
+  * Fixed routing for some pages.
