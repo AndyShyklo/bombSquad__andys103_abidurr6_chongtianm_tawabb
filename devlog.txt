@@ -98,3 +98,9 @@ andyS -- 2024-12-16 1:02
   * algorithm: made algorithm for calculating topher's location
   * made history total db: made organization system for all dates and cities. issue: api key for abstract called a lot
 
+markM -- 2024-12-16 11:00
+  * Started working on displaying crucial information on home page (front end) and integrating with andy's backend.
+
+abidurR -- 2024-12-16 20:53
+  * Calendar can switch between months and years using datetime and calendar module.
+  * Fixed routing for some pages.
