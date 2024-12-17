@@ -456,7 +456,7 @@ def passInfo(year, month, day):
         return(arr)
     else:
         print("Error, date not in database")
-        return("Error, date not in database")
+        return(-1)
     
 #inserts city data for the day into total db
 def insertCity(city):
