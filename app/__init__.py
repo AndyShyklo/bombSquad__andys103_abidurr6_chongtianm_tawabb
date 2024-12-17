@@ -19,12 +19,34 @@ def get_coord(long, lat):
 def map_page():
     longitude, latitude = get_coord(-98.3, 38.5)
     day = "Initial Setup"
-    
-    form_type = request.form.get('form_type')
-    if form_type == 'calendar':
-        return redirect(url_for('calendar_page'))
+    city = ""
+    image_link = ""
+    image_author = ""
+    holidays = []
 
-    return render_template('index.html', longitude=(longitude + 180) / 360, latitude=(latitude + 90) / 180, day=day)
+    y, m, d, = -1, -1, -1
+
+    if request.method == "POST":
+        y = request.form["year"]
+        m = request.form["month"]
+        d = request.form["day"]
+        day = f'{m}/{d}/{y}'
+
+    # [city, country name, longitude, latitude, image, image desc, image author, [holiday1, holiday2, ...]]
+    
+    if y != -1:
+        l = ['Chicago', 'US', -87.5, 41.7, "https://www.usbeacon.com/images/Illinois/maps/Chicago_o.gif", "desc", "author", ['holiday1', 'holiday2']]
+        longitude, latitude = get_coord(l[2], l[3])
+        city = f'{l[0]}, {l[1]}'
+        image_link = l[4]
+        image_author = l[6]
+        holidays = l[7]
+
+    return render_template('index.html', longitude=(longitude + 180) / 360, latitude=(latitude + 90) / 180, day=day, city=city,
+                           image_link = image_link,
+                           image_author = image_author,
+                           holidays = holidays
+                           )
 
 def calFunction(year, month):
     text_cal = calendar.HTMLCalendar(firstweekday=0)
@@ -35,7 +57,6 @@ def calendar_page():
     now = datetime.now()
     current_year = now.year
     current_month = now.month
-
     if request.method == 'POST':
         year = int(request.form.get('year', current_year))
         month = int(request.form.get('month', current_month))

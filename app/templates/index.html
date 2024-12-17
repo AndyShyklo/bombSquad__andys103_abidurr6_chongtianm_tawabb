@@ -9,11 +9,11 @@
 body, html {
 	max-width: 100%;
 	height: auto;
-	width: auto\9; 
+	width: auto\9;
 }
 
 .bg {
-	background-image: url("static/world_map.jpg");
+	background-image: url("../static/world_map.jpg");
 	height: 100%; 
 	background-position: center;
 	background-repeat: no-repeat;
@@ -24,6 +24,12 @@ body, html {
 	position:absolute;
 }
 
+.myImage {
+    height: auto;
+    width: auto;
+    max-width: 500px;
+    max-height: 500px;
+}
 		</style>
 
 		<script>
@@ -69,18 +75,27 @@ body, html {
 		<center>
 			<h2>
 				Day: {{day}} <br>
-				Topher's Location: {{city}}, {{country}}
+    Topher's Location: {{city}}
 			</h2>
 		</center>
 
 		<div class="bg"></div>
 
 
-		<center> <button onclick="showImage()">Show Topher</button> </center>
+		<center> <button onclick="showImage()">Show Topher</button>
 
-
+        <br> <br>
+        <div class="myImage"> <img src="{{ image_link }}" > </div>
+        By @{{ image_author }}
+        </center>
 		<br>
 
+        Relevant Holidays: <br>
+        {% for x in holidays %}
+            Holiday {{ loop.index }}: {{ x }}
+            <br>
+        {% endfor %}
+        <br><br>
 		<h2> Change Day? </h2>
 		<form action="/", method='POST'>
 			Enter Year (2000-2024): <input type="text" id="year" name="year">
@@ -88,8 +103,6 @@ body, html {
 			Enter Day: <input type="text" id="day" name="day">
 			<input type="submit" value="Submit">
 		</form>
-
-		<br>
 
 		<form action = "/calendar", method="GET">
 			<input type="submit" name="form_type" value="calendar">
