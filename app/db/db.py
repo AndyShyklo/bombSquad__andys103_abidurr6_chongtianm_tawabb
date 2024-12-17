@@ -369,7 +369,9 @@ def createTotalDB():
 
 def passInfo(year, month, day):
     #[city, country, longitude, latitude, image, image_desc, image_author, [holiday1, holiday2, ...]]
-    DB2_FILE="total.db"
+    DB2_FILE="db/total.db"
+    #import os
+    # print("Using database file:", os.path.abspath(DB2_FILE))
 
     print("passInfo")
     db = sqlite3.connect(DB2_FILE)
@@ -438,4 +440,4 @@ def viewCity():
 # print(data["results"][0]["alt_description"])
 # print(data["results"][0]["user"]["first_name"] + data["results"][0]["user"]["last_name"])
 
-passInfo(2024, 12, 15)
+print(passInfo(2024, 12, 15))

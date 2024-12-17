@@ -9,6 +9,7 @@ Time Spent: 3 hours
 from flask import Flask, render_template, request, redirect, url_for
 import calendar
 from datetime import datetime
+from db.db import passInfo
 
 app = Flask(__name__)
 
@@ -35,7 +36,8 @@ def map_page():
     # [city, country name, longitude, latitude, image, image desc, image author, [holiday1, holiday2, ...]]
     
     if y != -1:
-        l = ['Chicago', 'US', -87.5, 41.7, "https://www.usbeacon.com/images/Illinois/maps/Chicago_o.gif", "desc", "author", ['holiday1', 'holiday2']]
+        #l = ['Chicago', 'US', -87.5, 41.7, "https://www.usbeacon.com/images/Illinois/maps/Chicago_o.gif", "desc", "author", ['holiday1', 'holiday2']]
+        l = passInfo(y, m, d)
         longitude, latitude = get_coord(l[2], l[3])
         city = f'{l[0]}, {l[1]}'
         image_link = l[4]
