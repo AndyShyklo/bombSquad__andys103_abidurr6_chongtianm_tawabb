@@ -104,3 +104,6 @@ markM -- 2024-12-16 11:00
 abidurR -- 2024-12-16 20:53
   * Calendar can switch between months and years using datetime and calendar module.
   * Fixed routing for some pages.
+
+markM -- 2024-12-16 23:00
+  * Final touch ups. Integrated db.py with __init__.py and made sure it displayed information properly.
